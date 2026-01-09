@@ -9,6 +9,11 @@ const app = express();
 
 app.use(express.json())
 
+// Root route for K8s health probes
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'ok', service: 'mysql-test-app' });
+});
+
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
